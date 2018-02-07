@@ -1,0 +1,9 @@
+extends layout
+
+include mixins/_songForm
+
+block content
+  .row.justify-content-md-center
+    .col-md-8.col-sm-12
+      h1=title
+      +songForm(song)
