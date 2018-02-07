@@ -9,6 +9,7 @@ const setController = require('../controllers/setController');
 // Catch errors here
 const { catchErrors } = require('../handlers/errorHandlers');
 
+// add song
 router.get('/add', songController.addSong);
 router.post('/add',
   chordController.upload,
@@ -17,5 +18,11 @@ router.post('/add',
   catchErrors(chordController.addChord),
   catchErrors(videoController.addVideo)
 );
+
+// get song
+router.get('/song/:slug', catchErrors(songController.getSongBySlug));
+
+// list songs
+router.get('/songs', catchErrors(songController.getSongs));
 
 module.exports = router;

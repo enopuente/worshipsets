@@ -27,10 +27,12 @@ const multerOptions = {
   }
 }
 
+exports.upload = multer(multerOptions).single('chord');
+
 exports.addChord = async (req, res, next) => {
 
   // 1. check if song already has an existing chord with the same key
-  const chordExists = await Chord.find({ song: req.body.song, key: req.body.key });
+  const chordExists = await Chord.findOne({ song: req.body.song }).where('key').equals(req.body.key).exec();
 
   if (!chordExists) {
     req.body.file = req.file.filename;
@@ -42,5 +44,3 @@ exports.addChord = async (req, res, next) => {
   req.flash('notice', `This chord already exist for ${req.body.title}!`)
   res.redirect(`/song/${req.body.slug}`);
 }
-
-exports.upload = multer(multerOptions).single('chord');

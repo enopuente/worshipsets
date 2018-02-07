@@ -16,7 +16,8 @@ exports.addArtist = async (req, res, next) => {
     req.body.artist = artistExist._id;
   }
 
-  console.log('artist ID: ' + req.body.artist);
+  console.log('Artist ID: ' + req.body.artist);
 
+  // call next middleware
   next();
 }

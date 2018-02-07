@@ -18,15 +18,10 @@ exports.createSong = async (req, res, next) => {
   
   // 2. if exists, check if the artist matches
   if (songExists) {
-    console.log('entered if');
-    console.log('Song exists: ' + songExists._id);
     const artist = await Artist.findOne({ _id: songExists.artist._id });
-
-    console.log('artist: ' + artist);
 
     // 3. if title and and artist already exists, skip it!
     if (artist._id.equals(req.body.artist)) {
-      console.log('artist matches');
       req.body.slug = songExists.slug;
       req.body.song = songExists._id;
       next();
@@ -41,7 +36,18 @@ exports.createSong = async (req, res, next) => {
   req.body.slug = song.slug;
   req.body.song = song._id;
 
-  console.log('New song: ' + song);
-
   next();
+}
+
+// list all songs
+exports.getSongs = async (req, res) => {
+  const songs = await Song.find().sort({ artist: 'desc' });
+  res.render('songs', { title: 'Songs', songs });
+}
+
+// get song by slug
+exports.getSongBySlug = async (req, res) => {
+  const song = await Song.find({ slug: req.params.slug });
+  res.json(song);
+  //res.render('song', { title: 'Song', song });
 }

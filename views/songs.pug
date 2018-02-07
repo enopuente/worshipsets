@@ -1,0 +1,21 @@
+extends layout
+
+include mixins/_songRow
+
+block content
+  .row
+    .col.mt-3.mb-3
+      h1=title
+  .row
+    .col-md-12.col-sm-12
+      table.table
+        thead
+          tr
+            th(scope="col") Artist
+            th(scope="col") Title
+          tbody
+            each song in songs
+              +songRow(song)
+
+      
+      

@@ -1,0 +1,7 @@
+mixin songRow(song)
+  tr
+    td #{song.artist.name}
+    td #{song.title}
+    td
+      a(href=`/song/${song.slug}`) view
+    
