@@ -27,14 +27,23 @@ const multerOptions = {
   }
 }
 
+/**
+ * Upload chord
+ */
 exports.upload = multer(multerOptions).single('chord');
 
+/**
+ * Add chord after successful upload
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 exports.addChord = async (req, res, next) => {
 
   // 1. check if song already has an existing chord with the same key
   const chordExists = await Chord.findOne({ song: req.body.song }).where('key').equals(req.body.key).exec();
 
-  if (!chordExists) {
+  if (!chordExists && req.file) {
     req.body.file = req.file.filename;
     const chord = await (new Chord(req.body)).save();
     next();

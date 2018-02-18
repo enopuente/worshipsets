@@ -18,5 +18,9 @@ exports.icon = (name) => fs.readFileSync(`./public/images/icons/${name}.svg`);
 exports.siteName = `Worship Sets`;
 
 exports.menu = [
-  { slug: '/sets', title: 'Sets', icon: 'store', },
+  { slug: '/sets', title: 'Sets' },
+  { slug: '/songs', title: 'Songs' },
+  { slug: '/add', title: 'Add' }
 ];
+
+exports.keys = ['A','A#/Bb','B','C','C#/Db','D','D#/Eb','E','F','F#/Gb','G','G#/Ab'];

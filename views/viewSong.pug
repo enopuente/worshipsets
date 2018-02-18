@@ -1,0 +1,19 @@
+extends layout
+
+include mixins/_songView
+
+block content
+  .row.justify-content-md-center
+    .col-md-8.col-sm-12
+      +songView(song)
+      .chord__list.mt-5
+        h5 Chords
+        table.table
+          tbody
+            tr
+              each chord in chords
+                td
+                  a(href=`/public/uploads/${chord.file}`) #{chord.key}
+                td
+                  // TODO: pass chord key and pre-select in edit
+                  a(href=`/song/${song.slug}?action=edit`) edit

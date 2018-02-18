@@ -6,6 +6,7 @@ exports.addArtist = async (req, res, next) => {
   // find artists that have the same name
   const artistRegExp = new RegExp(`^(${req.body.artist})$`, 'i');
   const artistExist = await Artist.findOne({ name: artistRegExp });
+  console.log(artistRegExp);
 
   if (!artistExist) {
     const name = capitalizeWords(req.body.artist);

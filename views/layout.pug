@@ -15,8 +15,9 @@ html
 
         div.collapse.navbar-collapse(id="default")
           ul.navbar-nav.mr-auto
-            li.nav-item.active
-              a.nav-link(href="#") Home
+            each item in h.menu
+              li.nav-item(class=(currentPath.startsWith(item.slug) ? 'active' : ''))
+                a.nav-link(href=`${item.slug}`) #{item.title}
           form.form-inline.my-2.my-lg-0
             input.form-control.mr-sm-2(type="text" placeholder="Search" aria-label="Search")
             button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
@@ -32,7 +33,7 @@ html
                   p.flash__text!= message
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
 
-    main.container(role="main")
+    main.container.mt-3(role="main")
       block content
 
     block scripts

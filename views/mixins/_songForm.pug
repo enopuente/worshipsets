@@ -2,29 +2,19 @@ mixin songForm(song = {})
   form(action=`/add/${song._id || ''}` method="POST" enctype="multipart/form-data")
     .form-group
       label(for="title") Title
-      input(type="text" name="title" class="form-control" required)
+      input(type="text" name="title" class="form-control" value=song.title required)
     .form-group
       label(for="artist") Artist
-      input(type="text" name="artist" class="form-control" required)
+      input(type="text" name="artist" class="form-control" value=song.artist && song.artist.name required)
     .form-group
       label(for="key") Key
       select(name="key" class="form-control" class="form-control")
-        option A
-        option A#/Bb
-        option B
-        option C
-        option C#/Db
-        option D
-        option D#/Eb
-        option E
-        option F
-        option F#/Gb
-        option G
-        option G#/Ab
+        each key in h.keys
+          option #{key}
     .form-group
       label(for="chord") Chord
-      input(type="file" name="chord" id="chord" class="form-control-file" accept="application/pdf" required)
+      input(type="file" name="chord" id="chord" class="form-control-file" accept="application/pdf")
     .form-group
       label(for="video") Video
       input(type="text" name="video" class="form-control")
-    button(type="submit" class="btn btn-primary") Add Song
+    button(type="submit" class="btn btn-primary") Save

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Song = mongoose.model('Song');
 const Artist = mongoose.model('Artist');
+const Chord = mongoose.model('Chord');
 const capitalizeWords = require('../handlers/capitalizeWords');
 
 exports.addSong = (req, res) => {
@@ -47,7 +48,14 @@ exports.getSongs = async (req, res) => {
 
 // get song by slug
 exports.getSongBySlug = async (req, res) => {
-  const song = await Song.find({ slug: req.params.slug });
-  res.json(song);
-  //res.render('song', { title: 'Song', song });
+  let chords = [];
+  const song = await Song.findOne({ slug: req.params.slug });
+  const template = (req.query.action === 'edit') ? 'edit' : 'view';
+
+  if (template === 'view') {
+    chords = await Chord.find({ song: song._id});
+  }
+  const title = capitalizeWords(template);
+
+  res.render(`${template}Song`, { title: `${title} Song`, song, chords });
 }

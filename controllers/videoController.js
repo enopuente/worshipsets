@@ -7,5 +7,5 @@ exports.addVideo = async (req, res) => {
   }
 
   req.flash('success', `Successfully added ${req.body.title}!`)
-  res.redirect(`/song/${req.body.slug}`);
+  res.redirect(`/song/${req.body.slug}?action=view`);
 }
