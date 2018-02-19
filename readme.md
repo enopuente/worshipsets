@@ -6,4 +6,5 @@ Create worship sets from added songs and chords which can then be sent to the ba
 ## Installation
 
 ```yarn install```
+
 ```yarn start```
