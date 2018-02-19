@@ -12,8 +12,6 @@ block content
           tbody
             tr
               each chord in chords
-                td
+                td.chord__key
                   a(href=`/public/uploads/${chord.file}`) #{chord.key}
-                td
-                  // TODO: pass chord key and pre-select in edit
-                  a(href=`/song/${song.slug}?action=edit`) edit
+                  

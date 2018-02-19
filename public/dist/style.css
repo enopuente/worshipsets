@@ -1,4 +1,12 @@
 body {
   padding-top: 5em; }
 
+.chord__key a {
+  font-size: 6em;
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  border: 1px solid #eee; }
+
 /*# sourceMappingURL=style.css.map*/

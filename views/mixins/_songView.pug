@@ -2,3 +2,5 @@ mixin songView(song = {})
   .song__details.text-center
     h3 #{song.title}
     p #{song.artist.name}
+    span
+      a(href=`/song/${song.slug}?action=edit`) edit
